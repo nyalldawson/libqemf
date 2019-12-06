@@ -12,8 +12,8 @@
 #include <cmath>
 #endif
 
-#include <math.h>
 #include <QDebug>
+#include <cmath>
 
 #define DEBUG_EMFPAINT 0
 #define DEBUG_PAINTER_TRANSFORM 0
