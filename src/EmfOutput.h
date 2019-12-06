@@ -135,7 +135,7 @@ public:
 
 	   \param mapMode the mapping mode value
 	*/
-	virtual void setMapMode( const quint32 mapMode ) = 0;
+	virtual void setMapMode( quint32 mapMode ) = 0;
 
 	/**
 	   Handler for the EMR_SETMETARGN record type
@@ -175,21 +175,21 @@ public:
 
 	   \param backgroundMode the background fill mode
 	*/
-	virtual void setBkMode( const quint32 backgroundMode ) = 0;
+	virtual void setBkMode( quint32 backgroundMode ) = 0;
 
 	/**
 	   Handler for the EMR_SETPOLYFILLMODE record type
 
 	   \param polyFillMode the fill mode
 	*/
-	virtual void setPolyFillMode( const quint32 polyFillMode ) = 0;
+	virtual void setPolyFillMode( quint32 polyFillMode ) = 0;
 
 	/**
 	   Handler for the EMR_SETLAYOUT record type
 
 	   \param layoutMode the layout mode
 	*/
-	virtual void setLayout( const quint32 layoutMode ) = 0;
+	virtual void setLayout( quint32 layoutMode ) = 0;
 
 	/**
 	   Handler for the EMR_MODIFYWORLDTRANSFORM record type
@@ -229,14 +229,14 @@ public:
 
 	   \param ihObject the reference number for the object to select
 	*/
-	virtual void selectObject( const quint32 ihObject ) = 0;
+	virtual void selectObject( quint32 ihObject ) = 0;
 
 	/**
 	   Delete a previously created (or stock) object
 
 	   \param ihObject the reference number for the object to delete
 	*/
-	virtual void deleteObject( const quint32 ihObject ) = 0;
+	virtual void deleteObject( quint32 ihObject ) = 0;
 
 	/**
 	   Handler for the EMR_ARC record type
@@ -288,7 +288,7 @@ public:
 
 	   \param textAlignMode the text alignment mode
 	*/
-	virtual void setTextAlign( const quint32 textAlignMode ) = 0;
+	virtual void setTextAlign( quint32 textAlignMode ) = 0;
 
 	/**
 	  Handler for the EMR_SETTEXTCOLOR record type
@@ -298,8 +298,8 @@ public:
 	  \param blue the blue component of the text color
 	  \param reserved an unused value - ignore this
 	*/
-	virtual void setTextColor( const quint8 red, const quint8 green, const quint8 blue,
-				   const quint8 reserved ) = 0;
+	virtual void setTextColor( quint8 red, quint8 green, quint8 blue,
+				   quint8 reserved ) = 0;
 
 	/**
 	  Handler for the EMR_SETBKCOLOR record type
@@ -309,8 +309,8 @@ public:
 	  \param blue the blue component of the background color
 	  \param reserved an unused value - ignore this
 	*/
-	virtual void setBkColor( const quint8 red, const quint8 green, const quint8 blue,
-							 const quint8 reserved ) = 0;
+	virtual void setBkColor( quint8 red, quint8 green, quint8 blue,
+							 quint8 reserved ) = 0;
 
 	/**
 	   Handler for the EMR_EXTCREATEFONTINDIRECTW record type
@@ -350,7 +350,7 @@ public:
 	   \param x the X coordinate of the point to move to
        \param y the Y coordinate of the point to move to
 	*/
-	virtual void moveToEx( const qint32 x, const qint32 y ) = 0;
+	virtual void moveToEx( qint32 x, qint32 y ) = 0;
 
 	/**
 	   Handler for the EMR_SAVEDC record type
@@ -362,7 +362,7 @@ public:
 
 	   \param savedDC the device context to restore to (always negative)
 	*/
-	virtual void restoreDC( const qint32 savedDC ) = 0;
+	virtual void restoreDC( qint32 savedDC ) = 0;
 
 	/**
 	   Handler for the EMR_LINETO record type
@@ -389,7 +389,7 @@ public:
 	   \param bounds the bounding rectangle for the line segment
 	   \param points the sequence of points that describe the polygon
 	*/
-	virtual void polygon16( const QRect &bounds, const QList<QPoint> points ) = 0;
+	virtual void polygon16( const QRect &bounds, QList<QPoint> points ) = 0;
 
 	/**
 	   Handler for the EMR_POLYLINE record type.
@@ -403,7 +403,7 @@ public:
 	   \note the line is not meant to be closed (i.e. do not connect
 	   the last point to the first point) or filled.
 	*/
-	virtual void polyLine( const QRect &bounds, const QList<QPoint> points ) = 0;
+	virtual void polyLine( const QRect &bounds, QList<QPoint> points ) = 0;
 
 	/**
 	   Handler for the EMR_POLYLINE16 record type.
@@ -417,7 +417,7 @@ public:
 	   \note the line is not meant to be closed (i.e. do not connect
 	   the last point to the first point) or filled.
 	*/
-	virtual void polyLine16( const QRect &bounds, const QList<QPoint> points ) = 0;
+	virtual void polyLine16( const QRect &bounds, QList<QPoint> points ) = 0;
 
 	/**
 	   Handler for the EMR_POLYPOLYLINE16 record type.
@@ -456,7 +456,7 @@ public:
 	   \note the line is not meant to be closed (i.e. do not connect
 	   the last point to the first point) or filled.
 	*/
-	virtual void polyLineTo16( const QRect &bounds, const QList<QPoint> points ) = 0;
+	virtual void polyLineTo16( const QRect &bounds, QList<QPoint> points ) = 0;
 
 	/**
 	   Handler for the EMR_POLYBEZIERO16 record type.
@@ -470,7 +470,7 @@ public:
 	   \note the line is not meant to be closed (i.e. do not connect
 	   the last point to the first point) or filled.
 	*/
-	virtual void polyBezier16( const QRect &bounds, const QList<QPoint> points ) = 0;
+	virtual void polyBezier16( const QRect &bounds, QList<QPoint> points ) = 0;
 
 	/**
 	   Handler for the EMR_POLYLINETO16 record type.
@@ -484,7 +484,7 @@ public:
 	   \note the line is not meant to be closed (i.e. do not connect
 	   the last point to the first point) or filled.
 	*/
-	virtual void polyBezierTo16( const QRect &bounds, const QList<QPoint> points ) = 0;
+	virtual void polyBezierTo16( const QRect &bounds, QList<QPoint> points ) = 0;
 
 	/**
 	   Handler for the EMR_FILLPATH record type.
@@ -514,7 +514,7 @@ public:
 
 	   \param regionMode how to set the clipping path.
 	*/
-	virtual void setClipPath( const quint32 regionMode ) = 0;
+	virtual void setClipPath( quint32 regionMode ) = 0;
 
 	/**
 	   Handler for the EMR_BITBLT record type
@@ -528,7 +528,7 @@ public:
 
 	   \param stretchMode the stretch mode
 	*/
-	virtual void setStretchBltMode( const quint32 stretchMode ) = 0;
+	virtual void setStretchBltMode( quint32 stretchMode ) = 0;
 
 	/**
 	   Handler for the EMR_STRETCHDIBITS record type
@@ -549,7 +549,7 @@ public:
 
 	   \param limit mitter limit
 	*/
-	virtual void setMitterLimit(const quint32 limit) = 0;
+	virtual void setMitterLimit(quint32 limit) = 0;
 };
 
 

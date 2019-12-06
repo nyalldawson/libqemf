@@ -54,14 +54,14 @@ public:
 				  quint32 BrushHatch ) override;
 	void createMonoBrush( quint32 ihBrush, Bitmap *bitmap ) override;
 	void createDibPatternBrushPT( quint32 ihBrush, Bitmap *bitmap ) override;
-	void selectObject( const quint32 ihObject ) override;
-	void deleteObject( const quint32 ihObject ) override;
+	void selectObject( quint32 ihObject ) override;
+	void deleteObject( quint32 ihObject ) override;
 	void arc( const QRect &box, const QPoint &start, const QPoint &end ) override;
 	void chord( const QRect &box, const QPoint &start, const QPoint &end ) override;
 	void pie( const QRect &box, const QPoint &start, const QPoint &end ) override;
 	void ellipse( const QRect &box ) override;
 	void rectangle( const QRect &box ) override;
-	void setMapMode( const quint32 mapMode ) override;
+	void setMapMode( quint32 mapMode ) override;
 	void setMetaRgn() override;
 	void setWindowOrgEx( const QPoint &origin ) override;
 	void setWindowExtEx( const QSize &size ) override;
@@ -70,41 +70,41 @@ public:
 	void beginPath() override;
 	void closeFigure() override;
 	void endPath() override;
-	void setBkMode( const quint32 backgroundMode ) override;
-	void setPolyFillMode( const quint32 polyFillMode ) override;
-	void setLayout( const quint32 layoutMode ) override;
+	void setBkMode( quint32 backgroundMode ) override;
+	void setPolyFillMode( quint32 polyFillMode ) override;
+	void setLayout( quint32 layoutMode ) override;
 	void extCreateFontIndirectW( const ExtCreateFontIndirectWRecord &extCreateFontIndirectW ) override;
-	void setTextAlign( const quint32 textAlignMode ) override;
-	void setTextColor( const quint8 red, const quint8 green, const quint8 blue,
-			   const quint8 reserved ) override;
-	void setBkColor( const quint8 red, const quint8 green, const quint8 blue,
-					 const quint8 reserved ) override;
+	void setTextAlign( quint32 textAlignMode ) override;
+	void setTextColor( quint8 red, quint8 green, quint8 blue,
+			   quint8 reserved ) override;
+	void setBkColor( quint8 red, quint8 green, quint8 blue,
+					 quint8 reserved ) override;
 	void setPixelV( QPoint &point, quint8 red, quint8 green, quint8 blue, quint8 reserved ) override;
 	void modifyWorldTransform( quint32 mode, float M11, float M12,
 				   float M21, float M22, float Dx, float Dy ) override;
 	void setWorldTransform( float M11, float M12, float M21,
 				float M22, float Dx, float Dy ) override;
 	void extTextOut( const QRect &bounds, const EmrTextObject &textObject ) override;
-	void moveToEx( const qint32 x, const qint32 y ) override;
+	void moveToEx( qint32 x, qint32 y ) override;
 	void saveDC() override;
-	void restoreDC( const qint32 savedDC ) override;
+	void restoreDC( qint32 savedDC ) override;
 	void lineTo( const QPoint &finishPoint ) override;
 	void arcTo( const QRect &box, const QPoint &start, const QPoint &end ) override;
-	void polygon16( const QRect &bounds, const QList<QPoint> points ) override;
-	void polyLine( const QRect &bounds, const QList<QPoint> points ) override;
-	void polyLine16( const QRect &bounds, const QList<QPoint> points ) override;
+	void polygon16( const QRect &bounds, QList<QPoint> points ) override;
+	void polyLine( const QRect &bounds, QList<QPoint> points ) override;
+	void polyLine16( const QRect &bounds, QList<QPoint> points ) override;
 	void polyPolygon16( const QRect &bounds, const QList< QVector< QPoint > > &points ) override;
 	void polyPolyLine16( const QRect &bounds, const QList< QVector< QPoint > > &points ) override;
-	void polyLineTo16( const QRect &bounds, const QList<QPoint> points ) override;
-	void polyBezier16( const QRect &bounds, const QList<QPoint> points ) override;
-	void polyBezierTo16( const QRect &bounds, const QList<QPoint> points ) override;
+	void polyLineTo16( const QRect &bounds, QList<QPoint> points ) override;
+	void polyBezier16( const QRect &bounds, QList<QPoint> points ) override;
+	void polyBezierTo16( const QRect &bounds, QList<QPoint> points ) override;
 	void fillPath( const QRect &bounds ) override;
 	void strokeAndFillPath( const QRect &bounds ) override;
 	void strokePath( const QRect &bounds ) override;
-	void setMitterLimit(const quint32 limit) override;
-	void setClipPath( const quint32 regionMode ) override;
+	void setMitterLimit(quint32 limit) override;
+	void setClipPath( quint32 regionMode ) override;
 	void bitBlt( BitBltRecord &bitBltRecord ) override;
-	void setStretchBltMode( const quint32 stretchMode ) override;
+	void setStretchBltMode( quint32 stretchMode ) override;
 	void stretchDiBits( StretchDiBitsRecord &stretchDiBitsRecord ) override;
 	void alphaBlend(AlphaBlendRecord&) override;
 
