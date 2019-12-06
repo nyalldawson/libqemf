@@ -48,7 +48,7 @@ public:
 	   we want.
 	*/
 	QEmfRenderer();
-	QEmfRenderer( QPainter &painter, QSize &size, bool keepAspectRatio = false );
+  QEmfRenderer(QPainter &painter, const QSize& size, bool keepAspectRatio = false );
 	~QEmfRenderer() override;
 
 	void init( const Header *header ) override;

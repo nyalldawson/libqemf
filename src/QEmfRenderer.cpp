@@ -40,7 +40,7 @@ QEmfRenderer::QEmfRenderer()
 	m_keepAspectRatio = true;
 }
 
-QEmfRenderer::QEmfRenderer(QPainter &painter, QSize &size, bool keepAspectRatio)
+QEmfRenderer::QEmfRenderer(QPainter &painter, const QSize &size, bool keepAspectRatio)
 	: m_header( nullptr )
 	, m_path( nullptr )
 	, m_currentlyBuildingPath(false)
