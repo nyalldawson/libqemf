@@ -554,7 +554,7 @@ bool EmfViewer::eventFilter(QObject *, QEvent *event)
 			if (!we || (we->modifiers() != Qt::ControlModifier))
 				return false;
 
-			double degrees = (double)we->delta()/8.0;
+      double degrees = we->delta()/8.0;
 			double scaleFactor = 1 + degrees/360.0;
 			double zoom = 100*m_scaleFactor*scaleFactor;
 			if ((zoom < 3) || (zoom > 1e4))

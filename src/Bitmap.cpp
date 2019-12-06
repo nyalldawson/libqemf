@@ -68,7 +68,7 @@ Bitmap::Bitmap( QDataStream &stream,
 
 		// add BMP header
 		BMPFILEHEADER* bmpHeader;
-		bmpHeader = (BMPFILEHEADER*)(pattern.data());
+    bmpHeader = reinterpret_cast< BMPFILEHEADER* >(pattern.data());
 		bmpHeader->bmType = 0x4D42;
 		bmpHeader->bmSize = sizeBmp;
 
@@ -116,7 +116,7 @@ QImage Bitmap::image(QImage::Format format)
 	if (!m_hasImage)
 		return QImage();
 
-	return QImage((const uchar*)m_imageData.constData(), m_header->width(), abs(m_header->height()), format);
+  return QImage(reinterpret_cast< const uchar* >( m_imageData.constData() ), m_header->width(), abs(m_header->height()), format);
 }
 
 #if 1
@@ -175,7 +175,7 @@ QImage Bitmap::image()
 	// this is a compressed bitmap or not.
 	if (m_header->height() > 0) {
 		// This bitmap is a top-down bitmap without compression.
-		m_image = QImage((const uchar*)m_imageData.constData(), m_header->width(), m_header->height(), format);
+    m_image = QImage(reinterpret_cast< const uchar* >( m_imageData.constData() ), m_header->width(), m_header->height(), format);
 
 		// This is a workaround around a strange bug.  Without this
 		// code it shows nothing.  Note that if we use Format_ARGB32
@@ -196,7 +196,7 @@ QImage Bitmap::image()
 		// This bitmap is a bottom-up bitmap which uses compression.
 		switch (m_header->compression()) {
 		case BI_RGB:
-			m_image = QImage((const uchar*)m_imageData.constData(), m_header->width(), -m_header->height(), format);
+      m_image = QImage(reinterpret_cast< const uchar* >( m_imageData.constData() ), m_header->width(), -m_header->height(), format);
 			// The WMF images are in the BGR color order.
 			//m_image = m_image.rgbSwapped();
 			break;

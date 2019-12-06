@@ -55,7 +55,7 @@ bool EmfParser::load( const QString &fileName )
 bool EmfParser::load(const QByteArray &contents)
 {
 	// Create a QBuffer to read from...
-	QBuffer emfBuffer((QByteArray *)&contents, nullptr);
+  QBuffer emfBuffer( const_cast< QByteArray *>( &contents ), nullptr);
 	emfBuffer.open(QIODevice::ReadOnly);
 
 	// ...but what we really want is a stream.
@@ -364,6 +364,7 @@ bool EmfParser::readRecord( QDataStream &stream )
 			quint32 count;
 			stream >> count;
 			QList<QPoint> aPoints;
+      aPoints.reserve( count );
 			for (quint32 i = 0; i < count; ++i) {
 				QPoint point;
 				stream >> point;
@@ -419,7 +420,6 @@ bool EmfParser::readRecord( QDataStream &stream )
 			soakBytes( stream, size-8 ); // because we already took 8.
 			return false;
 		}
-		break;
 		case EMR_SETPIXELV:
 		{
 			QPoint point;
@@ -864,6 +864,7 @@ bool EmfParser::readRecord( QDataStream &stream )
 		quint32 count;
 		stream >> count;
 		QList<QPoint> aPoints;
+    aPoints.reserve(count);
 		for (quint32 i = 0; i < count; ++i) {
 		qint16 x, y;
 		stream >> x;
@@ -880,6 +881,7 @@ bool EmfParser::readRecord( QDataStream &stream )
 		quint32 count;
 		stream >> count;
 		QList<QPoint> aPoints;
+    aPoints.reserve(count);
 		for (quint32 i = 0; i < count; ++i) {
 		qint16 x, y;
 		stream >> x;
@@ -896,6 +898,7 @@ bool EmfParser::readRecord( QDataStream &stream )
 		quint32 count;
 		stream >> count;
 		QList<QPoint> aPoints;
+    aPoints.reserve(count);
 		for (quint32 i = 0; i < count; ++i) {
 		qint16 x, y;
 		stream >> x;
@@ -912,6 +915,7 @@ bool EmfParser::readRecord( QDataStream &stream )
 		quint32 count;
 		stream >> count;
 		QList<QPoint> aPoints;
+    aPoints.reserve(count);
 		for (quint32 i = 0; i < count; ++i) {
 		qint16 x, y;
 		stream >> x;
@@ -928,6 +932,7 @@ bool EmfParser::readRecord( QDataStream &stream )
 		quint32 count;
 		stream >> count;
 		QList<QPoint> aPoints;
+    aPoints.reserve(count);
 		for (quint32 i = 0; i < count; ++i) {
 		qint16 x, y;
 		stream >> x;
@@ -946,6 +951,7 @@ bool EmfParser::readRecord( QDataStream &stream )
 			quint32 count; // number of points in all polylines
 			stream >> count;
 			QList< QVector< QPoint > > aPoints;
+      aPoints.reserve(numberOfPolylines);
 			for ( quint32 i = 0; i < numberOfPolylines; ++i ) {
 				quint32 polylinePointCount;
 				stream >> polylinePointCount;
@@ -971,6 +977,7 @@ bool EmfParser::readRecord( QDataStream &stream )
 			quint32 count; // number of points in all polygons
 			stream >> count;
 			QList< QVector< QPoint > > aPoints;
+      aPoints.reserve(numberOfPolygons);
 			for ( quint32 i = 0; i < numberOfPolygons; ++i ) {
 				quint32 polygonPointCount;
 				stream >> polygonPointCount;

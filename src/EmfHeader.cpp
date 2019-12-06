@@ -39,9 +39,6 @@ Header::Header( QDataStream &stream )
 	soakBytes( stream, mSize - 88 );
 }
 
-Header::~Header()
-= default;
-
 bool Header::isValid() const
 {
 	return ( ( 0x00000001 == mType ) && ( ENHMETA_SIGNATURE == mSignature ) );

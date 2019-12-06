@@ -51,22 +51,22 @@ public:
    /**
 	   The X origin of the destination rectangle
 	*/
-	qint32 xDest() const { return m_xDest; };
+  qint32 xDest() const { return m_xDest; }
 
 	/**
 	   The Y origin of the destination rectangle
 	*/
-	qint32 yDest() const { return m_yDest; };
+  qint32 yDest() const { return m_yDest; }
 
 	/**
 	   The width of the destination rectangle
 	*/
-	qint32 cxDest() const { return m_cxDest; };
+  qint32 cxDest() const { return m_cxDest; }
 
 	/**
 	   The height of the destination rectangle
 	*/
-	qint32 cyDest() const { return m_cyDest; };
+  qint32 cyDest() const { return m_cyDest; }
 
 	quint32 rasterOperation() const { return m_BitBltRasterOperation; }
 
@@ -75,7 +75,7 @@ public:
 	/**
 	   The destination rectangle
 	*/
-	QRect destinationRectangle() const { return QRect( xDest(), yDest(), cxDest(), cyDest() ); };
+  QRect destinationRectangle() const { return QRect( xDest(), yDest(), cxDest(), cyDest() ); }
 
 	/**
 	   The image to display
@@ -151,59 +151,59 @@ public:
 	/**
 	   The X origin of the destination rectangle
 	*/
-	qint32 xDest() const { return m_xDest; };
+  qint32 xDest() const { return m_xDest; }
 
 	/**
 	   The Y origin of the destination rectangle
 	*/
-	qint32 yDest() const { return m_yDest; };
+  qint32 yDest() const { return m_yDest; }
 
 	/**
 	   The width of the destination rectangle
 	*/
-	qint32 cxDest() const { return m_cxDest; };
+  qint32 cxDest() const { return m_cxDest; }
 
 	/**
 	   The height of the destination rectangle
 	*/
-	qint32 cyDest() const { return m_cyDest; };
+  qint32 cyDest() const { return m_cyDest; }
 
 	/**
 	   The destination rectangle
 	*/
-	QRect destinationRectangle() const { return QRect( xDest(), yDest(), cxDest(), cyDest() ); };
+  QRect destinationRectangle() const { return QRect( xDest(), yDest(), cxDest(), cyDest() ); }
 
 	/**
 	   The X origin of the source rectangle
 	*/
-	qint32 xSrc() const { return m_xSrc; };
+  qint32 xSrc() const { return m_xSrc; }
 
 	/**
 	   The Y origin of the source rectangle
 	*/
-	qint32 ySrc() const { return m_ySrc; };
+  qint32 ySrc() const { return m_ySrc; }
 
 	/**
 	   The width of the source rectangle
 	*/
-	qint32 cxSrc() const { return m_cxSrc; };
+  qint32 cxSrc() const { return m_cxSrc; }
 
 	/**
 	   The height of the source rectangle
 	*/
-	qint32 cySrc() const { return m_cySrc; };
+  qint32 cySrc() const { return m_cySrc; }
 
 	/**
 	   The source rectangle
 	*/
-	QRect sourceRectangle() const { return QRect( xSrc(), ySrc(), cxSrc(), cySrc() ); };
+  QRect sourceRectangle() const { return QRect( xSrc(), ySrc(), cxSrc(), cySrc() ); }
 
 	/**
 	   The raster operation
 	*/
-	qint32 rasterOperation() const { return m_BitBltRasterOperation; };
+  qint32 rasterOperation() const { return m_BitBltRasterOperation; }
 
-	quint32 usageSrc() const { return m_UsageSrc; };
+  quint32 usageSrc() const { return m_UsageSrc; }
 
 	/**
 	   The image to display
@@ -390,37 +390,37 @@ public:
 	/**
 	   The font handle index
 	*/
-	quint32 ihFonts() const { return m_ihFonts; };
+  quint32 ihFonts() const { return m_ihFonts; }
 
 	/**
 	   The height of the font
 	*/
-	qint32 height() const { return m_height; };
+  qint32 height() const { return m_height; }
 
 	/**
 	   The height of the font
 	*/
-	qint32 orientation() const { return -0.1*m_orientation;};
+  qint32 orientation() const { return -0.1*m_orientation;}
 
 	/**
 	   Whether this is a italic font
 	*/
-	quint8 italic() const { return m_italic; };
+  quint8 italic() const { return m_italic; }
 
 	/**
 	   Whether this is a underlined font
 	*/
-	quint8 underline() const { return m_underline; };
+  quint8 underline() const { return m_underline; }
 
 	/**
 	   The weight of this font
 	*/
-	quint32 weight() const { return m_weight; };
+  quint32 weight() const { return m_weight; }
 
 	/**
 	   The name of the font face
 	*/
-	QString fontFace() const { return m_facename; };
+  QString fontFace() const { return m_facename; }
 
 private:
 	quint32 m_ihFonts;

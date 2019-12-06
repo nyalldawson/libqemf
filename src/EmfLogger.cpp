@@ -49,9 +49,8 @@ void EmfLogger::eof()
 	*m_debug << "EMR_EOF" << "\n";
 }
 
-void EmfLogger::setPixelV( QPoint &point, quint8 red, quint8 green, quint8 blue, quint8 reserved )
+void EmfLogger::setPixelV( QPoint &point, quint8 red, quint8 green, quint8 blue, quint8 )
 {
-	Q_UNUSED( reserved );
 	*m_debug << "EMR_SETPIXELV:" << point << QColor( red, green, blue ) << "\n";
 }
 
@@ -222,35 +221,28 @@ void EmfLogger::setTextAlign( const quint32 textAlignMode )
 }
 
 void EmfLogger::setTextColor( const quint8 red, const quint8 green, const quint8 blue,
-				const quint8 reserved )
+        const quint8 )
 {
-	Q_UNUSED( reserved );
 	*m_debug << "EMR_SETTEXTCOLOR" << QColor( red, green, blue ) << "\n";
 }
 
 void EmfLogger::setBkColor( const quint8 red, const quint8 green, const quint8 blue,
-							  const quint8 reserved )
+                const quint8 )
 {
-	Q_UNUSED( reserved );
 	*m_debug << "EMR_SETBKCOLOR" << QColor( red, green, blue ) << "\n";
 }
 
-void EmfLogger::createPen(quint32 ihPen, quint32 penStyle, quint32 x, quint32 y,
-				   quint8 red, quint8 green, quint8 blue, quint32 brushStyle, quint8 reserved )
+void EmfLogger::createPen(quint32 ihPen, quint32 penStyle, quint32 x, quint32,
+           quint8 red, quint8 green, quint8 blue, quint32 brushStyle, quint8  )
 {
-	Q_UNUSED( y );
-	Q_UNUSED( reserved );
-
 	*m_debug << "EMR_CREATEPEN" << "ihPen:" << ihPen << ", penStyle:" << penStyle
 				  << "width:" << x << "color:" << QColor( red, green, blue ) << ", brushStyle:" << brushStyle<< "\n";
 }
 
 void EmfLogger::createBrushIndirect( quint32 ihBrush, quint32 BrushStyle, quint8 red,
-					   quint8 green, quint8 blue, quint8 reserved,
+             quint8 green, quint8 blue, quint8,
 					   quint32 BrushHatch )
 {
-	Q_UNUSED( reserved );
-
 	*m_debug << "EMR_CREATEBRUSHINDIRECT:" << ihBrush << "style:" << BrushStyle
 			 << "Colour:" << QColor( red, green, blue ) << ", Hatch:" << BrushHatch << "\n";
 }

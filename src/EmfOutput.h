@@ -35,8 +35,8 @@ namespace QEmf
 class AbstractOutput
 {
 public:
-	AbstractOutput() = default;;
-	virtual ~AbstractOutput() = default;;
+
+  virtual ~AbstractOutput() = default;
 
 	bool load(const QString&);
 	bool load(const QByteArray &);

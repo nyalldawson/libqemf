@@ -161,10 +161,8 @@ void QEmfRenderer::init( const Header *header )
 #endif
 }
 
-void QEmfRenderer::cleanup( const Header *header )
+void QEmfRenderer::cleanup( const Header * )
 {
-	Q_UNUSED( header );
-
 #if DEBUG_EMFPAINT
 	if (m_painterSaves > 0)
 		qDebug() << "WARNING: UNRESTORED DC's:" << m_painterSaves;
@@ -184,10 +182,8 @@ void QEmfRenderer::eof()
 {
 }
 
-void QEmfRenderer::setPixelV( QPoint &point, quint8 red, quint8 green, quint8 blue, quint8 reserved )
+void QEmfRenderer::setPixelV( QPoint &point, quint8 red, quint8 green, quint8 blue, quint8 )
 {
-	Q_UNUSED( reserved );
-
 #if DEBUG_EMFPAINT
 	qDebug() << point << red << green << blue;
 #endif
@@ -517,13 +513,9 @@ void QEmfRenderer::setWorldTransform( float M11, float M12, float M21,
 // ----------------------------------------------------------------
 
 
-void QEmfRenderer::createPen(quint32 ihPen, quint32 penStyle, quint32 x, quint32 y, quint8 red, quint8 green, quint8 blue,
-							quint32 brushStyle, quint8 reserved)
+void QEmfRenderer::createPen(quint32 ihPen, quint32 penStyle, quint32 x, quint32, quint8 red, quint8 green, quint8 blue,
+              quint32, quint8)
 {
-	Q_UNUSED(y);
-	Q_UNUSED(brushStyle);
-	Q_UNUSED(reserved);
-
 #if DEBUG_EMFPAINT
 	qDebug() << ihPen << hex << penStyle << dec << x << y << red << green << blue << reserved;
 #endif
@@ -618,11 +610,8 @@ void QEmfRenderer::createPen(quint32 ihPen, quint32 penStyle, quint32 x, quint32
 }
 
 void QEmfRenderer::createBrushIndirect( quint32 ihBrush, quint32 brushStyle,
-										 quint8 red, quint8 green, quint8 blue, quint8 reserved, quint32 brushHatch)
+                     quint8 red, quint8 green, quint8 blue, quint8, quint32 brushHatch)
 {
-	Q_UNUSED( reserved );
-	Q_UNUSED( brushHatch );
-
 #if DEBUG_EMFPAINT
 	qDebug() << ihBrush << hex << brushStyle << dec << red << green << blue << reserved << brushHatch;
 #endif
@@ -774,7 +763,6 @@ void QEmfRenderer::selectStockObject( const quint32 ihObject )
 			m_painter->setFont(font);
 			break;
 		}
-	break;
 	case SYSTEM_FONT:
 	// TODO: handle this
 	break;
@@ -899,7 +887,7 @@ void QEmfRenderer::setMapMode( const quint32 mapMode )
 	qDebug() << "Set map mode:" << mapMode;
 #endif
 
-	m_mapMode = (MapMode)mapMode;
+  m_mapMode = static_cast< MapMode >( mapMode );
 }
 
 void QEmfRenderer::setBkMode( const quint32 backgroundMode )
@@ -960,10 +948,8 @@ void QEmfRenderer::setTextAlign( const quint32 textAlignMode )
 }
 
 void QEmfRenderer::setTextColor( const quint8 red, const quint8 green, const quint8 blue,
-										  const quint8 reserved )
+                      const quint8 )
 {
-	Q_UNUSED( reserved );
-
 #if DEBUG_EMFPAINT
 	qDebug() << red << green << blue << reserved;
 #endif
@@ -972,10 +958,8 @@ void QEmfRenderer::setTextColor( const quint8 red, const quint8 green, const qui
 }
 
 void QEmfRenderer::setBkColor( const quint8 red, const quint8 green, const quint8 blue,
-										const quint8 reserved )
+                    const quint8 )
 {
-	Q_UNUSED( reserved );
-
 #if DEBUG_EMFPAINT
 	qDebug() << red << green << blue << reserved;
 #endif
@@ -1156,10 +1140,8 @@ void QEmfRenderer::arcTo( const QRect &box, const QPoint &start, const QPoint &e
 	m_path->arcTo( box, startAngle, spanAngle );
 }
 
-void QEmfRenderer::polygon16( const QRect &bounds, const QList<QPoint> points )
+void QEmfRenderer::polygon16( const QRect &, const QList<QPoint> points )
 {
-	Q_UNUSED( bounds );
-
 #if DEBUG_EMFPAINT
 	qDebug() << bounds << points;
 #endif
@@ -1172,10 +1154,8 @@ void QEmfRenderer::polygon16( const QRect &bounds, const QList<QPoint> points )
 	m_painter->drawPolygon(pointVector.constData(), pointVector.size(), m_fillRule);
 }
 
-void QEmfRenderer::polyLine( const QRect &bounds, const QList<QPoint> points )
+void QEmfRenderer::polyLine( const QRect &, const QList<QPoint> points )
 {
-	Q_UNUSED( bounds );
-
 #if DEBUG_EMFPAINT
 	qDebug() << bounds << points;
 #endif
@@ -1195,7 +1175,7 @@ void QEmfRenderer::polyLine16( const QRect &bounds, const QList<QPoint> points )
 
 void QEmfRenderer::polyPolygon16( const QRect &bounds, const QList< QVector< QPoint > > &points )
 {
-	Q_UNUSED( bounds );
+  (void)bounds;
 
 #if DEBUG_EMFPAINT
 	qDebug() << bounds << points;
@@ -1208,7 +1188,7 @@ void QEmfRenderer::polyPolygon16( const QRect &bounds, const QList< QVector< QPo
 
 void QEmfRenderer::polyPolyLine16( const QRect &bounds, const QList< QVector< QPoint > > &points )
 {
-	Q_UNUSED( bounds );
+  (void)bounds;
 
 #if DEBUG_EMFPAINT
 	qDebug() << bounds << points;
@@ -1221,7 +1201,7 @@ void QEmfRenderer::polyPolyLine16( const QRect &bounds, const QList< QVector< QP
 
 void QEmfRenderer::polyLineTo16( const QRect &bounds, const QList<QPoint> points )
 {
-	Q_UNUSED( bounds );
+  (void)bounds;
 
 #if DEBUG_EMFPAINT
 	qDebug() << bounds << points;
@@ -1238,7 +1218,7 @@ void QEmfRenderer::polyBezier16( const QRect &bounds, const QList<QPoint> points
 	qDebug() << bounds << points;
 #endif
 
-	Q_UNUSED( bounds );
+  (void)bounds;
 
 	if (m_currentlyBuildingPath){
 		QTransform m = m_pathTransform;
@@ -1269,7 +1249,7 @@ void QEmfRenderer::polyBezierTo16( const QRect &bounds, const QList<QPoint> poin
 	qDebug() << bounds << points;
 #endif
 
-	Q_UNUSED( bounds );
+  (void)bounds;
 
 	if (m_currentlyBuildingPath && !m_pathTransform.isIdentity()){
 		QList<QPoint> mappedPoints;
@@ -1290,7 +1270,7 @@ void QEmfRenderer::fillPath( const QRect &bounds )
 	qDebug() << bounds;
 #endif
 
-	Q_UNUSED(bounds);
+  (void)bounds;
 
 	QBrush br = m_painter->brush();
 
@@ -1309,18 +1289,16 @@ void QEmfRenderer::strokeAndFillPath( const QRect &bounds )
 	qDebug() << bounds;
 #endif
 
-	Q_UNUSED(bounds);
+  (void)bounds;
 
 	m_painter->drawPath(*m_path);
 }
 
-void QEmfRenderer::strokePath( const QRect &bounds )
+void QEmfRenderer::strokePath( const QRect & )
 {
 #if DEBUG_EMFPAINT
 	qDebug() << bounds;
 #endif
-
-	Q_UNUSED( bounds );
 	m_painter->strokePath(*m_path, m_painter->pen());
 }
 
@@ -1393,7 +1371,7 @@ void QEmfRenderer::bitBlt( BitBltRecord &bitBltRecord )
 
 void QEmfRenderer::setStretchBltMode( const quint32 stretchMode )
 {
-	Q_UNUSED(stretchMode);
+  (void)stretchMode;
 
 #if DEBUG_EMFPAINT
 	qDebug() << hex << stretchMode << dec;

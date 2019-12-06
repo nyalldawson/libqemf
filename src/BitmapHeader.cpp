@@ -52,6 +52,7 @@ BitmapHeader::BitmapHeader( QDataStream &stream, int size )
 
 		unsigned int colors = abs(int(size - m_headerSize))/sizeof(RGBQUAD);
 		//printf("BitmapHeader size: %d m_headerSize: %d bmiColors: %d\n", size, m_headerSize, colors);
+    m_colorTable.reserve( colors );
 		for (unsigned int i = 0; i < colors; i++){
 			quint8 rgbBlue, rgbGreen, rgbRed, rgbReserved;
 			stream >> rgbBlue;

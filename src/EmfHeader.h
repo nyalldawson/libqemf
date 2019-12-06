@@ -37,7 +37,6 @@ public:
 	   \param stream the stream to read the header structure from
 	*/
 	explicit Header(QDataStream &stream);
-	~Header();
 
 	/**
 	   Check whether this is a valid EMF Header
