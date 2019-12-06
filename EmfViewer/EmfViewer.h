@@ -47,10 +47,10 @@ private:
 	void exportSvg(const QString &);
 	bool validFileType(const QString&);
 	QString emfUrl(QDropEvent*);
-	bool eventFilter(QObject *, QEvent *);
-	void dropEvent(QDropEvent*);
-	void dragEnterEvent(QDragEnterEvent*);
-	void contextMenuEvent(QContextMenuEvent *);
+    bool eventFilter(QObject *, QEvent *) override;
+    void dropEvent(QDropEvent*) override;
+    void dragEnterEvent(QDragEnterEvent*) override;
+    void contextMenuEvent(QContextMenuEvent *) override;
 
 	void createMenus();
 	void loadImage();
