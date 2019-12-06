@@ -12,6 +12,7 @@
 #include <QImage>
 #include <QRect> // also provides QSize
 #include <QString>
+#include <memory>
 
 #include "Bitmap.h"
 /**
@@ -118,7 +119,7 @@ private:
 	quint32 m_offBitsSrc;
 	quint32 m_cbBitsSrc;
 
-	Bitmap *m_bitmap; // The source bitmap
+  std::unique_ptr< Bitmap > m_bitmap; // The source bitmap
 
 	//QByteArray m_imageData;
 	//QImage *m_image;

@@ -92,13 +92,13 @@ private:
 	Bitmap &operator=(Bitmap&) = delete;
 
 private:
-	bool          m_hasImage;
-	BitmapHeader *m_header;
+  bool          m_hasImage{ false };
+  BitmapHeader *m_header{ nullptr };
 
 	QBitmap       m_mask;
 	QByteArray    m_imageData;
 	QImage        m_image;
-	bool          m_imageIsValid;
+  bool          m_imageIsValid{ false };
 };
 
 

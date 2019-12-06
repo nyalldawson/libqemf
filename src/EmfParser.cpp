@@ -28,16 +28,6 @@ namespace QEmf
 
 // ================================================================
 
-
-EmfParser::EmfParser()
-	:  mBounds(QRect())
-{
-}
-
-EmfParser::~EmfParser()
-= default;
-
-
 bool EmfParser::load( const QString &fileName )
 {
 	QFile *file = new QFile( fileName );

@@ -30,10 +30,8 @@ namespace QEmf
 class EmfParser
 {
 public:
-	EmfParser();
-	~EmfParser();
 
-	/**
+  /**
 	 * Load an EMF file
 	 *
 	 * \param fileName the name of the file to load

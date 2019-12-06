@@ -20,7 +20,6 @@ namespace QEmf
 
 
 BitBltRecord::BitBltRecord( QDataStream &stream, quint32 recordSize )
-	: m_bitmap(nullptr)
 {
 	//qDebug() << "stream position at the start: " << stream.device()->pos();
 	//qDebug() << "record size: " << recordSize;
@@ -73,18 +72,15 @@ BitBltRecord::BitBltRecord( QDataStream &stream, quint32 recordSize )
 
 	//qDebug() << "stream position before the image: " << stream.device()->pos();
 	if (m_cbBmiSrc > 0) {
-		m_bitmap = new Bitmap( stream, recordSize, 8 + 23 * 4, // header + 23 ints
+    m_bitmap.reset( new Bitmap( stream, recordSize, 8 + 23 * 4, // header + 23 ints
 							   m_offBmiSrc, m_cbBmiSrc,
-							   m_offBitsSrc, m_cbBitsSrc );
+                 m_offBitsSrc, m_cbBitsSrc ) );
 	}
 
 	//qDebug() << "stream position at the end: " << stream.device()->pos();
 }
 
-BitBltRecord::~BitBltRecord()
-{
-	delete m_bitmap;
-}
+BitBltRecord::~BitBltRecord() = default;
 
 bool BitBltRecord::hasImage() const
 {

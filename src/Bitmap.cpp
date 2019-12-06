@@ -31,10 +31,6 @@ Bitmap::Bitmap( QDataStream &stream,
 				quint32 cbBmiSrc,  // size of bitmap header
 				quint32 offBitsSrc,// offset to source bitmap
 				quint32 cbBitsSrc) // size of source bitmap
-	: m_hasImage(false)
-	, m_header(nullptr)
-	, m_mask(QBitmap())
-	, m_imageIsValid(false)
 {
 	int size = (recordSize - usedBytes);
 	qint64 startPos = stream.device()->pos();
