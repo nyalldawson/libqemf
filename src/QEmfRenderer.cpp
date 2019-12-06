@@ -78,7 +78,7 @@ void QEmfRenderer::paintBounds(const Header *header)
 	m_painter->save();
 
 	// Draw a simple cross in a rectangle to show the bounds.
-	m_painter->setPen(QPen(QColor(172, 196, 206)));
+    m_painter->setPen(QPen(QColor(172, 196, 206), 0));
 	m_painter->drawRect(rect);
 	m_painter->drawLine(rect.topLeft(), rect.bottomRight());
 	m_painter->drawLine(rect.bottomLeft(), rect.topRight());
@@ -1066,7 +1066,7 @@ void QEmfRenderer::extTextOut( const QRect &bounds, const EmrTextObject &textObj
 	// Debug code that paints a rectangle around the output area.
 #if DEBUG_TEXTOUT
 	m_painter->save();
-	m_painter->setPen(Qt::black);
+    m_painter->setPen(Qt::black, 0);
 	m_painter->drawRect(QRect(x, y, textWidth, textHeight));
 	if (bounds.isValid()){
 		m_painter->setPen(Qt::red);
