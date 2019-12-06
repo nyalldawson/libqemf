@@ -519,13 +519,11 @@ bool EmfViewer::validFileType(const QString& fn)
 		return false;
 
 	QString ext = QFileInfo(fn).suffix().toLower();
-	if (ext == "emf"
+  return (ext == "emf"
 #ifdef Q_OS_WIN
 	|| ext == "wmf"
 #endif
-	) return true;
-
-	return false;
+  );
 }
 
 QString EmfViewer::emfUrl(QDropEvent* e)
