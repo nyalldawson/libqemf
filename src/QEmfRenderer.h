@@ -163,15 +163,15 @@ private:
 	int convertFontWeight( quint32 emfWeight );
 
 
-	Header                  *m_header;   // Save to be able to retain scaling.
+	Header                  *m_header{ nullptr };   // Save to be able to retain scaling.
 	int                      m_painterSaves; // The number of times that save() was called.
 	QSize                    m_outputSize;
 	bool                     m_keepAspectRatio;
 
 	QMap<quint32, QVariant>  m_objectTable;
 
-	QPainterPath *m_path;
-	bool          m_currentlyBuildingPath;
+	QPainterPath *m_path{ nullptr };
+	bool          m_currentlyBuildingPath{false};
 
 	QPainter                *m_painter;
 	QTransform               m_worldTransform; // The transform inside the EMF.
@@ -220,16 +220,16 @@ private:
 	/**
 	   The current fill rule
 	*/
-	enum Qt::FillRule m_fillRule;
+	enum Qt::FillRule m_fillRule{Qt::OddEvenFill};
 
 	/**
 	   The current map mode
 	*/
-	MapMode  m_mapMode;
+	MapMode  m_mapMode{MM_TEXT};
 	/**
 		The current text alignment mode
 	*/
-	quint32 m_textAlignMode;
+	quint32 m_textAlignMode{TA_NOUPDATECP};
 
 	/**
 	   The current coordinates

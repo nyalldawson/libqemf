@@ -109,8 +109,8 @@ public:
 	void alphaBlend(AlphaBlendRecord&) override;
 
 	private:
-		QDebug *m_debug;
-		QFile *m_file;
+		QDebug *m_debug{nullptr};
+		QFile *m_file{nullptr};
 };
 
 

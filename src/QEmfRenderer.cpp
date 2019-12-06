@@ -29,13 +29,8 @@ static QPainter::CompositionMode  rasteropToQtComposition(long rop);
 
 
 QEmfRenderer::QEmfRenderer()
-	: m_header( nullptr )
-	, m_path( nullptr )
-	, m_currentlyBuildingPath(false)
-	, m_fillRule(Qt::OddEvenFill)
-	, m_mapMode(MM_TEXT)
-	, m_textAlignMode(TA_NOUPDATECP) // == TA_TOP == TA_LEFT
-	, m_currentCoords()
+	: 
+	 m_currentCoords()
 	, m_current_bitmap_mask(QBitmap())
 	,m_current_mask_color(QColor(Qt::color1))
 {

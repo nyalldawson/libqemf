@@ -90,10 +90,10 @@ private:
 	void outputBytes( QDataStream &stream, int numBytes );
 
 	// Pointer to the output strategy
-	AbstractOutput *mOutput;
+	AbstractOutput *mOutput{ nullptr };
 
 	// flag specifying if only the header should be parsed
-	bool mHeaderOnly;
+	bool mHeaderOnly{false};
 
 	// bounding box of the file content, in device units
 	QRect mBounds;

@@ -30,7 +30,7 @@ namespace QEmf
 
 
 EmfParser::EmfParser()
-	: mOutput( nullptr ), mHeaderOnly(false), mBounds(QRect())
+	:  mBounds(QRect())
 {
 }
 
