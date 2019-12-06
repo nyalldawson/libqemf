@@ -35,8 +35,7 @@ EmfParser::EmfParser()
 }
 
 EmfParser::~EmfParser()
-{
-}
+= default;
 
 
 bool EmfParser::load( const QString &fileName )

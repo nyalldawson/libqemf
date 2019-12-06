@@ -116,7 +116,6 @@ BitmapHeader::BitmapHeader( QDataStream &stream, int size )
 }
 
 BitmapHeader::~BitmapHeader()
-{
-}
+= default;
 
 } // namespace QEmf

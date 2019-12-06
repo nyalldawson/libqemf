@@ -82,8 +82,7 @@ EmrTextObject::EmrTextObject( QDataStream &stream, quint32 size, TextType textTy
 }
 
 EmrTextObject::~EmrTextObject()
-{
-}
+= default;
 
 QPoint EmrTextObject::referencePoint() const
 {

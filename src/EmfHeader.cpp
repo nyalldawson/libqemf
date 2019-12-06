@@ -40,8 +40,7 @@ Header::Header( QDataStream &stream )
 }
 
 Header::~Header()
-{
-}
+= default;
 
 bool Header::isValid() const
 {
