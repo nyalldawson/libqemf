@@ -1,9 +1,8 @@
-## add_subdirectory(demo)
+############################################################
+# sources
 
-
-########### library target ###############
-
-set(libemf_LIB_SRCS 
+SET(LIBEMF_SRCS
+    Bitmap.cpp
     BitmapHeader.cpp
     EmfHeader.cpp
     EmfLogger.cpp
@@ -14,17 +13,21 @@ set(libemf_LIB_SRCS
     QEmfRenderer.cpp
 )
 
-find_package(Qt5Core REQUIRED)
-find_package(Qt5Gui REQUIRED)
+FIND_PACKAGE(Qt5Core REQUIRED)
+FIND_PACKAGE(Qt5Gui REQUIRED)
 
-add_library(libemf SHARED ${libemf_LIB_SRCS})
+INCLUDE_DIRECTORIES(SYSTEM
+                    ${Qt5Core_INCLUDE_DIRS}
+                    ${Qt5Gui_INCLUDE_DIRS})
 
-include_directories(${Qt5Core_INCLUDE_DIRS})
-include_directories(${Qt5Gui_INCLUDE_DIRS})
+#############################################################
+# libemf library
+ADD_LIBRARY(libemf SHARED ${LIBEMF_SRCS})
 
-
-#set_target_properties(libemf PROPERTIES VERSION ${GENERIC_CALLIGRA_LIB_VERSION} SOVERSION ${GENERIC_CALLIGRA_LIB_SOVERSION} )
-
+TARGET_LINK_LIBRARIES(libemf
+  ${Qt5Core_LIBRARIES}
+  ${Qt5Gui_LIBRARIES}
+)
 
 ########### install files ###############
 
