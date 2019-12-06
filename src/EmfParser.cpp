@@ -30,30 +30,25 @@ namespace QEmf
 
 bool EmfParser::load( const QString &fileName )
 {
-	QFile *file = new QFile( fileName );
+  QFile file( fileName );
 
-	if ( ! file->exists() ) {
-		qWarning( "Request to load file (%s) that does not exist", qPrintable(file->fileName()) );
-		delete file;
+  if ( ! file.exists() ) {
+    qWarning( "Request to load file (%s) that does not exist", qPrintable(file.fileName()) );
 		return false;
 	}
 
-	if ( ! file->open( QIODevice::ReadOnly ) ){
-		qWarning() << "Request to load file (" << file->fileName() << ") that cannot be opened";
-		delete file;
+  if ( ! file.open( QIODevice::ReadOnly ) ){
+    qWarning() << "Request to load file (" << file.fileName() << ") that cannot be opened";
 		return false;
 	}
 
 	// Use version 11, which makes floats always be 32 bits without
 	// the need to call setFloatingPointPrecision().
-	QDataStream stream( file );
+  QDataStream stream( &file );
 	stream.setVersion(QDataStream::Qt_4_6);
 	stream.setFloatingPointPrecision(QDataStream::SinglePrecision);
 
 	bool result = loadFromStream( stream );
-
-	delete file;
-
 	return result;
 }
 
@@ -75,27 +70,25 @@ bool EmfParser::loadFromStream(QDataStream &stream)
 {
 	stream.setByteOrder( QDataStream::LittleEndian );
 
-	Header *header = new Header( stream );
-	if ( ! header->isValid() ) {
+  Header header( stream );
+  if ( ! header.isValid() ) {
 		qWarning() << "Failed to parse header, perhaps not an EMF file";
-		delete header;
 		return false;
 	}
 
-	mBounds = header->bounds();//save the bounding box;
+  mBounds = header.bounds();//save the bounding box;
 
 	if (mHeaderOnly){
-		delete header;
 		return true;
 	}
 
-	mOutput->init( header );
+  mOutput->init( &header );
 
 #if DEBUG_EMFPARSER
 	qDebug() << "========================================================== Starting EMF";
 #endif
 
-	int numRecords = header->recordCount();
+  int numRecords = header.recordCount();
 	for ( int i = 1; i < numRecords; ++i ) {
 		#if DEBUG_EMFPARSER
 			qDebug() << "Record" << i << "/" << numRecords << ":";
@@ -104,9 +97,8 @@ bool EmfParser::loadFromStream(QDataStream &stream)
 			break;
 	}
 
-	mOutput->cleanup( header );
+  mOutput->cleanup( &header );
 
-	delete header;
 	return true;
 }
 

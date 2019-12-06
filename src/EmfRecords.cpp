@@ -124,7 +124,6 @@ QImage BitBltRecord::image()
 
 /*****************************************************************************/
 StretchDiBitsRecord::StretchDiBitsRecord( QDataStream &stream, quint32 recordSize )
-	: m_bitmap(nullptr)
 {
 	//qDebug() << "stream position at the start: " << stream.device()->pos();
 	//qDebug() << "recordSize =" << recordSize;
@@ -160,9 +159,9 @@ StretchDiBitsRecord::StretchDiBitsRecord( QDataStream &stream, quint32 recordSiz
 
 	//qDebug() << "stream position before the image: " << stream.device()->pos();
 	if (m_cbBmiSrc > 0) {
-		m_bitmap = new Bitmap( stream, recordSize, 8 + 18 * 4, // header + 18 ints
+    m_bitmap.reset( new Bitmap( stream, recordSize, 8 + 18 * 4, // header + 18 ints
 							   m_offBmiSrc, m_cbBmiSrc,
-							   m_offBitsSrc, m_cbBitsSrc );
+                 m_offBitsSrc, m_cbBitsSrc ) );
 	}
 	//qDebug() << "stream position at the end: " << stream.device()->pos();
 #if 0
@@ -186,11 +185,7 @@ StretchDiBitsRecord::StretchDiBitsRecord( QDataStream &stream, quint32 recordSiz
 #endif
 }
 
-StretchDiBitsRecord::~StretchDiBitsRecord()
-{
-	if (m_bitmap)
-		delete m_bitmap;
-}
+StretchDiBitsRecord::~StretchDiBitsRecord() = default;
 
 QRect StretchDiBitsRecord::bounds() const
 {
@@ -293,7 +288,6 @@ QImage StretchDiBitsRecord::image()
 
 /*****************************************************************************/
 AlphaBlendRecord::AlphaBlendRecord(QDataStream &stream, quint32 recordSize)
-	: m_bitmap(nullptr)
 {
 	qint32 startPos = stream.device()->pos();
 
@@ -350,7 +344,7 @@ AlphaBlendRecord::AlphaBlendRecord(QDataStream &stream, quint32 recordSize)
 
 	if (m_cbBmiSrc > 0){
 		qint32 usedBytes = stream.device()->pos() - startPos + 8;//we must add the header size (8)
-		m_bitmap = new Bitmap(stream, recordSize, usedBytes, m_offBmiSrc, m_cbBmiSrc, m_offBitsSrc, m_cbBitsSrc);
+    m_bitmap.reset( new Bitmap(stream, recordSize, usedBytes, m_offBmiSrc, m_cbBmiSrc, m_offBitsSrc, m_cbBitsSrc) );
 	}
 
 #ifdef DEBUG_EMFPARSER
@@ -370,11 +364,7 @@ QImage AlphaBlendRecord::image()
 	return m_bitmap ? m_bitmap->image((m_SrcConstantAlpha == 255) ? QImage::Format_ARGB32_Premultiplied : QImage::Format_ARGB32) : QImage();
 }
 
-AlphaBlendRecord::~AlphaBlendRecord()
-{
-	if (m_bitmap)
-		delete m_bitmap;
-}
+AlphaBlendRecord::~AlphaBlendRecord() = default;
 
 /*****************************************************************************/
 ExtCreateFontIndirectWRecord::ExtCreateFontIndirectWRecord( QDataStream &stream, quint32 size )

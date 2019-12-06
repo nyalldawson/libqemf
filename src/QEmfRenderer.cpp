@@ -60,11 +60,7 @@ QEmfRenderer::QEmfRenderer(QPainter &painter, QSize &size, bool keepAspectRatio)
 	m_keepAspectRatio = keepAspectRatio;
 }
 
-QEmfRenderer::~QEmfRenderer()
-{
-	delete m_header;
-	delete m_path;
-}
+QEmfRenderer::~QEmfRenderer() = default;
 
 void QEmfRenderer::paintBounds(const Header *header)
 {
@@ -84,7 +80,7 @@ void QEmfRenderer::paintBounds(const Header *header)
 void QEmfRenderer::init( const Header *header )
 {
 	// Save the header since we need the frame and bounds inside the drawing.
-	m_header = new Header(*header);
+  m_header.reset( new Header(*header) );
 
 	QSize headerBoundsSize = header->bounds().size();
 
@@ -213,9 +209,7 @@ void QEmfRenderer::beginPath()
 	qDebug();
 #endif
 
-	if (m_path)
-		delete m_path;
-	m_path = new QPainterPath;
+  m_path.reset( new QPainterPath );
 	m_currentlyBuildingPath = true;
 }
 

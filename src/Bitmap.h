@@ -12,6 +12,7 @@
 #include <QByteArray>
 #include <QImage>
 #include <QBitmap>
+#include <memory>
 
 #include "BitmapHeader.h"
 
@@ -61,7 +62,7 @@ public:
 	/**
 	   The bitmap header
 	*/
-	BitmapHeader *header() const {return m_header;}
+  BitmapHeader *header() const {return m_header.get();}
 
 	/**
 	   Return true if there is an image in this record.
@@ -93,7 +94,7 @@ private:
 
 private:
   bool          m_hasImage{ false };
-  BitmapHeader *m_header{ nullptr };
+  std::unique_ptr< BitmapHeader > m_header;
 
 	QBitmap       m_mask;
 	QByteArray    m_imageData;

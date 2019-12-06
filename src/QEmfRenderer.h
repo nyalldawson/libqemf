@@ -163,14 +163,14 @@ private:
 	int convertFontWeight( quint32 emfWeight );
 
 
-	Header                  *m_header{ nullptr };   // Save to be able to retain scaling.
+  std::unique_ptr< Header> m_header;   // Save to be able to retain scaling.
 	int                      m_painterSaves; // The number of times that save() was called.
 	QSize                    m_outputSize;
 	bool                     m_keepAspectRatio;
 
 	QMap<quint32, QVariant>  m_objectTable;
 
-	QPainterPath *m_path{ nullptr };
+  std::unique_ptr< QPainterPath > m_path;
 	bool          m_currentlyBuildingPath{false};
 
 	QPainter                *m_painter;

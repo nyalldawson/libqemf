@@ -245,7 +245,7 @@ private:
 	qint32 m_cxDest;
 	qint32 m_cyDest;
 
-	Bitmap *m_bitmap; // The source bitmap
+  std::unique_ptr< Bitmap > m_bitmap; // The source bitmap
 };
 
 /**
@@ -364,7 +364,7 @@ private:
 	quint32 m_cbBitsSrc;
 	qint32 m_cxSrc;
 	qint32 m_cySrc;
-	Bitmap *m_bitmap; // The source bitmap
+  std::unique_ptr< Bitmap > m_bitmap; // The source bitmap
 };
 
 /*****************************************************************************/

@@ -44,7 +44,7 @@ Bitmap::Bitmap( QDataStream &stream,
 
 	qint64 posBeforeHeader = stream.device()->pos();
 	// Create the header
-	m_header = new BitmapHeader(stream, cbBmiSrc);
+  m_header.reset( new BitmapHeader(stream, cbBmiSrc) );
 	usedBytes += cbBmiSrc;
 
 	qint64 bitCount = m_header->bitCount();
@@ -109,11 +109,7 @@ Bitmap::Bitmap( QDataStream &stream,
 	}
 }
 
-Bitmap::~Bitmap()
-{
-	delete m_header;
-	//delete m_image;
-}
+Bitmap::~Bitmap() = default;
 
 QImage Bitmap::image(QImage::Format format)
 {
