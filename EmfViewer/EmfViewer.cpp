@@ -257,7 +257,6 @@ void EmfViewer::slotExportFile()
 	QStringList filters;
 	foreach (QByteArray ba, QImageWriter::supportedImageFormats())
 		filters.append("*." + QString(ba).toLower());
-	filters.append("*.eps");
 	filters.append("*.pic");
 	filters.append("*.pdf");
 	filters.append("*.svg");
@@ -323,29 +322,6 @@ void EmfViewer::exportPdf(const QString &fileName)
 	paint.end();
 }
 
-void EmfViewer::exportPostScript(const QString &fileName)
-{
-#if QT_VERSION < 0x050000
-	QPrinter printer;
-	printer.setOutputFormat(QPrinter::PostScriptFormat);
-	printer.setFontEmbeddingEnabled(true);
-	printer.setCreator("EmfViewer");
-	printer.setFullPage(true);
-	printer.setColorMode(QPrinter::Color);
-	printer.setPaperSize(m_label->size(), QPrinter::DevicePixel);
-	printer.setResolution(logicalDpiX());//we set screen resolution as default
-	printer.setOutputFileName(fileName);
-
-	QPainter paint(&printer);
-	renderPicture().play(&paint);
-	paint.end();
-#else
-	QMessageBox::critical(this, tr("Export error"),
-	tr("When built using <a href=\"https://www.qt.io\">Qt 5</a> <b>EmfViewer</b> must use the <a href=\"http://soft.proindependent.com/eps\">EpsEngine</a> library in order to export to (Encapsulated) PostScript format."));
-#endif
-}
-
-
 void EmfViewer::exportSvg(const QString &fileName)
 {
 	QSize size = m_label->size();
@@ -369,9 +345,6 @@ void EmfViewer::exportFile(const QString &fileName)
 		return;
 	} else if (fileName.endsWith(".pdf")){
 		exportPdf(fileName);
-		return;
-	} else if (fileName.endsWith(".eps")){
-		exportPostScript(fileName);
 		return;
 	} else if (fileName.endsWith(".svg")){
 		exportSvg(fileName);
@@ -535,25 +508,6 @@ QString EmfViewer::emfUrl(QDropEvent* e)
 	QStringList fileNames;
 	foreach (QUrl url, urls){
 		QString path = url.toLocalFile();
-	#ifdef Q_OS_MAC
-		#if QT_VERSION < 0x050000
-		if ((QSysInfo::MacintoshVersion >= QSysInfo::MV_10_10)){
-			CFStringRef relCFStringRef = CFStringCreateWithCString(NULL, path.toUtf8().constData(), kCFStringEncodingUTF8);
-			CFURLRef relCFURL = CFURLCreateWithFileSystemPath(NULL, relCFStringRef, kCFURLPOSIXPathStyle,false);
-			CFErrorRef error = 0;
-			CFURLRef absCFURL = CFURLCreateFilePathURL(NULL, relCFURL, &error);
-			if (!error){
-				static const CFIndex maxAbsPathCStrBufLen = 4096;
-				char absPathCStr[maxAbsPathCStrBufLen];
-				if (CFURLGetFileSystemRepresentation(absCFURL, true, reinterpret_cast<UInt8 *>(&absPathCStr[0]), maxAbsPathCStrBufLen))
-					path = QString(absPathCStr);
-			}
-			CFRelease(absCFURL);
-			CFRelease(relCFURL);
-			CFRelease(relCFStringRef);
-		}
-		#endif
-	#endif
 		fileNames << path;
 	}
 

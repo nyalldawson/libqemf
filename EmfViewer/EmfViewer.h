@@ -43,7 +43,6 @@ private:
 	QPicture renderPicture();
 	void exportPicture(const QString &);
 	void exportPdf(const QString &);
-	void exportPostScript(const QString &);
 	void exportSvg(const QString &);
 	bool validFileType(const QString&);
 	QString emfUrl(QDropEvent*);

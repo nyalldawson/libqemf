@@ -1346,7 +1346,7 @@ void QEmfRenderer::setClipPath( const quint32 regionMode )
 		m_painter->setClipPath(*m_path, Qt::IntersectClip);
 		break;
 	case RGN_OR:
-	#if QT_VERSION < 0x050000
+  #if 0
 		m_painter->setClipPath(*m_path, Qt::UniteClip);
 	#else
 		qWarning() <<  "Unexpected / unsupported clip region mode:" << regionMode;
