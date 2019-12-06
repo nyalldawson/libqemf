@@ -15,8 +15,8 @@ namespace QEmf
 
 
 EmfLogger::EmfLogger(const QString& fileName):
-m_debug(0),
-m_file(0)
+m_debug(nullptr),
+m_file(nullptr)
 {
 	if (!fileName.isEmpty()){
 		m_file = new QFile(fileName);

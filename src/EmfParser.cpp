@@ -30,7 +30,7 @@ namespace QEmf
 
 
 EmfParser::EmfParser()
-	: mOutput( 0 ), mHeaderOnly(false), mBounds(QRect())
+	: mOutput( nullptr ), mHeaderOnly(false), mBounds(QRect())
 {
 }
 
@@ -71,7 +71,7 @@ bool EmfParser::load( const QString &fileName )
 bool EmfParser::load(const QByteArray &contents)
 {
 	// Create a QBuffer to read from...
-	QBuffer emfBuffer((QByteArray *)&contents, 0);
+	QBuffer emfBuffer((QByteArray *)&contents, nullptr);
 	emfBuffer.open(QIODevice::ReadOnly);
 
 	// ...but what we really want is a stream.

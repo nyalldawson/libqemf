@@ -20,7 +20,7 @@ namespace QEmf
 
 
 BitBltRecord::BitBltRecord( QDataStream &stream, quint32 recordSize )
-	: m_bitmap(0)
+	: m_bitmap(nullptr)
 {
 	//qDebug() << "stream position at the start: " << stream.device()->pos();
 	//qDebug() << "record size: " << recordSize;
@@ -128,7 +128,7 @@ QImage BitBltRecord::image()
 
 /*****************************************************************************/
 StretchDiBitsRecord::StretchDiBitsRecord( QDataStream &stream, quint32 recordSize )
-	: m_bitmap(0)
+	: m_bitmap(nullptr)
 {
 	//qDebug() << "stream position at the start: " << stream.device()->pos();
 	//qDebug() << "recordSize =" << recordSize;
@@ -297,7 +297,7 @@ QImage StretchDiBitsRecord::image()
 
 /*****************************************************************************/
 AlphaBlendRecord::AlphaBlendRecord(QDataStream &stream, quint32 recordSize)
-	: m_bitmap(0)
+	: m_bitmap(nullptr)
 {
 	qint32 startPos = stream.device()->pos();
 
