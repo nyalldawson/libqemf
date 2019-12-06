@@ -315,7 +315,7 @@ public:
 	/**
 	   Handler for the EMR_EXTCREATEFONTINDIRECTW record type
 
-	   \param extCreateFontIndirectWRecord the contents of the
+       \param extCreateFontIndirectW the contents of the
 	   EMR_EXTCREATEFONTINDIRECTW record
 	*/
 	virtual void extCreateFontIndirectW( const ExtCreateFontIndirectWRecord &extCreateFontIndirectW ) = 0;
@@ -325,7 +325,7 @@ public:
 	   EMR_EXTTEXTOUTW and EMR_EXTTEXTOUTA record types.
 
 	   \param bounds the bounds used for e.g. clipping
-	   \param texObject The object describing the text.
+       \param textObject The object describing the text.
 	*/
 	virtual void extTextOut( const QRect &bounds, const EmrTextObject &textObject ) = 0;
 
